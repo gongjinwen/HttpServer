@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;

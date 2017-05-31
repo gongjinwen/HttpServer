@@ -3,6 +3,7 @@ package com.linkwisdom.httpserver.handler;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.ScanResult;
+import android.os.Environment;
 import android.util.Log;
 
 import com.linkwisdom.httpserver.DialogActivity;
@@ -74,6 +75,8 @@ public class SettingsHandler implements HttpRequestHandler {
 
         echo_panel_head(body);
 
+        add_image(body);
+
         echo_panel_body(body);
 
 
@@ -108,10 +111,17 @@ public class SettingsHandler implements HttpRequestHandler {
 
     private void echo_panel_head(StringBuffer body) {
         body.append("<div class=\"panel-heading\">\n");
-        body.append("<h1 id=\"title\" class=\"text-center\">设置</h1>\n");
+        body.append("<h1 id=\"title\" class=\"text-center\">连接新设备</h1>\n");
         body.append("</div>\n");
 
         return;
+    }
+
+    private void add_image(StringBuffer body) {
+        String png = "http://" + Utility.getIp(context) + ":" + WebServer.serverPort + WebServer.PNG_EG_TULIP;
+        body.append("<div class=\"headingImg\">\n");
+        body.append("<img src=\"" + png + "\"  alt=\"连接\" />\n");
+        body.append("</div>\n");
     }
 
     private void echo_panel_body(StringBuffer body) {

@@ -7,6 +7,7 @@ import com.linkwisdom.httpserver.handler.ConnectHandler;
 import com.linkwisdom.httpserver.handler.CssBootstrapHandler;
 import com.linkwisdom.httpserver.handler.CssStyleHandler;
 import com.linkwisdom.httpserver.handler.GetWifiInfoHandler;
+import com.linkwisdom.httpserver.handler.ImageHandler;
 import com.linkwisdom.httpserver.handler.JsBootstrapHandler;
 import com.linkwisdom.httpserver.handler.JsJqueryHandler;
 import com.linkwisdom.httpserver.handler.JsMainHandler;
@@ -50,6 +51,7 @@ public class WebServer extends Thread{
     public static final String JS_JQUERY = "/js_jquery";
     public static final String JS_BOOTSTRAP = "/js_bootstrap";
     public static final String JS_MAIN = "/js_main";
+    public static final String PNG_EG_TULIP  = "/png_eg_tulip";
 
     private boolean isRunning = false;
     private Context context = null;
@@ -107,6 +109,7 @@ public class WebServer extends Thread{
         registry.register(JS_JQUERY, new JsJqueryHandler(context));
         registry.register(JS_BOOTSTRAP, new JsBootstrapHandler(context));
         registry.register(JS_MAIN, new JsMainHandler(context));
+        registry.register(PNG_EG_TULIP, new ImageHandler(context));
 
         httpService.setHandlerResolver(registry);
     }

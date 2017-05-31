@@ -185,11 +185,11 @@ public class ConnectHandler implements HttpRequestHandler {
 
         body.append("<ul>\n");
         body.append("<li>\n");
-        body.append("<p>如果设备语音提示“连接已成功”，请将手机的连接到网络 <strong id=\"network-name\">" + ssid +"</strong></p>\n");
+        body.append("<p>如果设备语音提示“连接已成功”，请将手机连接到网络: <strong id=\"network-name\">" + ssid +"</strong></p>\n");
         body.append("</li>\n");
 
         body.append("<li>\n");
-        body.append("<p>如果设备语言提示“连接失败”，请手机的连接到网络：“Domigo XXXONE” <a href=\"setting\">重试</a></p>");
+        body.append("<p>如果设备语言提示“连接失败”，请将手机连接到网络:“Domigo XXXONE”  <a href=\"setting\">重试</a></p>");
         body.append("</li>\n");
         body.append("</ul>");
         body.append("</div>");
