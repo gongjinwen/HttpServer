@@ -10,6 +10,7 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 
 import com.linkwisdom.httpserver.server.WebServer;
+import com.linkwisdom.httpserver.service.HttpService;
 import com.linkwisdom.httpserver.util.Utility;
 import com.linkwisdom.httpserver.util.WifiOperator;
 
@@ -132,6 +133,14 @@ public class ConnectHandler implements HttpRequestHandler {
                             String tagSSID = "\"" + ssid + "\"";
                             if(cSSID !=null && cSSID.equals(tagSSID)) {
                                 Utility.playHint(context, 1);//播放音频（连接成功）
+
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+                                context.stopService(new Intent(context, HttpService.class));
                                 break;
                             }
                         }

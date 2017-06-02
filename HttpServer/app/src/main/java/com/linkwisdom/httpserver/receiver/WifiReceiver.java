@@ -35,7 +35,7 @@ public class WifiReceiver extends BroadcastReceiver {
                 //获取当前wifi名称
                 Log.i(TAG, "//////== httpserver : WifiReceiver 连接到网络: " + ssid);
 
-                context.startService(new Intent(context, HttpService.class));
+//                context.startService(new Intent(context, HttpService.class));
             }
 
         } else if(intent.getAction().equals(WifiManager.WIFI_STATE_CHANGED_ACTION)){//wifi打开与否
@@ -48,7 +48,7 @@ public class WifiReceiver extends BroadcastReceiver {
             else if(wifistate == WifiManager.WIFI_STATE_ENABLED){
                 System.out.println("系统开启wifi");
                 Log.i(TAG, "//////== httpserver : WifiReceiver 系统已开启wifi" );
-                context.startService(new Intent(context, HttpService.class));
+//                context.startService(new Intent(context, HttpService.class));
             }
         } else if("android.net.wifi.WIFI_AP_STATE_CHANGED".equals(intent.getAction())){
             int state = intent.getIntExtra("wifi_state",  0);
