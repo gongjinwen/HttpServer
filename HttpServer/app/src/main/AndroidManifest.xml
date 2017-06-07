@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.linkwisdom.httpserver"
-    android:sharedUserId="android.uid.system" >
+    package="com.linkwisdom.httpserver" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -47,12 +46,19 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <receiver android:name=".receiver.WifiReceiver">
             <intent-filter>
                 <action android:name="android.net.wifi.RSSI_CHANGED" />
                 <action android:name="android.net.wifi.STATE_CHANGE" />
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
                 <action android:name="android.net.wifi.WIFI_AP_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.OpenWifiListReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="A9.android.action.open.wifi_list" />
             </intent-filter>
         </receiver>
 

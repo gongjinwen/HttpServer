@@ -60,7 +60,6 @@ public class HttpService extends Service {
 
         startForeground(NOTIFICATION_STARTED_ID, notification);// 开始前台服务
 
-        WifiOperator.setContext(this);
         WifiOperator.getInstance().startScan();//扫描wifi
 
         //弹出对话框，扫描获取WiFi列表
@@ -68,13 +67,6 @@ public class HttpService extends Service {
         intentAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intentAct.setClass(getApplicationContext(), DialogActivity.class);
         startActivity(intentAct);
-
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_USE_STATIC_IP, "0");
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_STATIC_DNS1, "192.168.0.2");
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_STATIC_DNS2, "192.168.0.3");
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_STATIC_GATEWAY, "192.168.0.1");
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_STATIC_NETMASK, "255.255.255.0");
-//        android.provider.Settings.System.putString(getContentResolver(), android.provider.Settings.System.WIFI_STATIC_IP, "1");
 
         return START_STICKY;
     }

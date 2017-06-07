@@ -21,8 +21,6 @@ public class DialogActivity extends Activity {
 //        requestWindowFeature(Window.FEATURE_LEFT_ICON);
         setContentView(R.layout.activity_dialog);
 
-        WifiOperator.setContext(DialogActivity.this);
-
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

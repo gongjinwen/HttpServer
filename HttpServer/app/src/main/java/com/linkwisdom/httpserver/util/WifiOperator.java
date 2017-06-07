@@ -9,6 +9,8 @@ import android.net.wifi.WifiManager.WifiLock;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.linkwisdom.httpserver.MyApplication;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +32,14 @@ public class WifiOperator {
     private WifiOperator() {
         if (context != null) {
             wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            this.startScan();
         }
     }
 
-    /***
-     * 需要先调用  设置Context
-     * @param _context
-     */
-    public static void setContext(Context _context) {
-        context = _context;
-    }
-
     public static WifiOperator getInstance() {
+        if(context == null) {
+            context = MyApplication.getContext();
+        }
+
         if (wifiOperator == null && context != null) {
             wifiOperator = new WifiOperator();
         }
@@ -158,7 +155,18 @@ public class WifiOperator {
                     wifiConfigurationList.add(wific);
                 }
             }
+        }
+    }
 
+    /**
+     * @param wifiList
+     */
+    public void setScanWifiList(ArrayList<ScanResult> wifiList) {
+        if(wifiList != null && scanResultList != null) {
+            scanResultList.clear();
+            for (ScanResult scan: wifiList){
+                scanResultList.add(scan);
+            }
         }
     }
 
@@ -168,7 +176,7 @@ public class WifiOperator {
      * @param netWorkId
      */
     public boolean connetionConfiguration(int netWorkId) {
-        if (configurationNetWorkIdCheck(netWorkId) && wifiManager != null) {
+        if (wifiManager != null && configurationNetWorkIdCheck(netWorkId)) {
             return wifiManager.enableNetwork(netWorkId, true);
         }
         return false;
@@ -247,6 +255,7 @@ public class WifiOperator {
         int netWorkId = -1;
         if (_wifiConfiguration != null && wifiManager != null) {
             netWorkId = wifiManager.addNetwork(_wifiConfiguration);
+            Log.i(TAG, "//////== httpserver : addNetWork netWorkId：" + netWorkId);
             startScan();
         }
         return netWorkId;
@@ -260,6 +269,7 @@ public class WifiOperator {
     public int addNetWorkAndConnect(WifiConfiguration _wifiConfiguration) {
         int netWorkId = addNetWork(_wifiConfiguration);
         if (netWorkId != -1) {
+            wifiConfigurationList.add(_wifiConfiguration);
             boolean boo = connetionConfiguration(netWorkId);
             if(!boo) {
                 netWorkId = -1;

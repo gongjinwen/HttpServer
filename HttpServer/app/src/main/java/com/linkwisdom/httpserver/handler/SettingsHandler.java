@@ -41,11 +41,6 @@ public class SettingsHandler implements HttpRequestHandler {
 
         Log.i(TAG, "//////== httpserver : SettingsHandler.");
 
-//        Intent intentAct = new Intent();
-//        intentAct.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        intentAct.setClass(context, DialogActivity.class);
-//        context.startActivity(intentAct);
-
         String contentType = "text/html";
         HttpEntity entity = new EntityTemplate(new ContentProducer() {
             public void writeTo(final OutputStream outstream)
@@ -216,7 +211,6 @@ public class SettingsHandler implements HttpRequestHandler {
     }
 
     private void get_wifi_list(StringBuffer body) {
-        WifiOperator.setContext(context);
         List<ScanResult> list = WifiOperator.getInstance().getWifiScanResult();
         Log.i(TAG, "//////== httpserver : SettingsHandler wifiList :" + list.size());
         for(ScanResult r : list) {

@@ -119,6 +119,12 @@ public class ConnectHandler implements HttpRequestHandler {
                         boolean isWifiOpened = WifiOperator.getInstance().isWifiOpened();
                         // Log.i(TAG, "//////== httpserver : wifi打开状态：" + isWifiOpened);
                         if (isWifiOpened) {//判断WiFi是否打开
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
                             connectWifi();//连接wifi
                             connect = false;
                         }
@@ -160,7 +166,6 @@ public class ConnectHandler implements HttpRequestHandler {
     private void connectWifi() {
         if(ssid != null || password != null) {
             Log.i(TAG, "//////== httpserver : ConnectHandler. connectWifi：" + ssid);
-            WifiOperator.setContext(context);
             //查询WiFi的加密形式
             int wifiCipherType = WifiOperator.getInstance().getCipherType(ssid);
 
